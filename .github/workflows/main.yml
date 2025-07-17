@@ -24,7 +24,7 @@ jobs:
 
           for file in $(find ./src -type f); do
             filename=$(basename "$file")
-            if [ -f "target-repo/src/$filename" ]; then
+            if [ -f "target-repo/$filename" ]; then
               if cmp -s "$file" "target-repo/src/$filename"; then
                 echo "✅ $filename is identical in both repos." >> report/result.txt
               else
