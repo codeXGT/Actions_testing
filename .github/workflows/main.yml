@@ -24,7 +24,7 @@ jobs:
           mkdir -p report
           echo "Checking files..." > report/result.txt
 
-          for file in $(find Lesson_1/src -type f); do
+          for file in $(find Lesson_1 -type f); do
             filename=$(basename "$file")
             if [ -f "src/$filename" ]; then
             if cmp -s "Lesson_1/src/$filename" "src/$filename"; then
