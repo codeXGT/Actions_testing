@@ -15,8 +15,7 @@ jobs:
 
       - name: Clone target repo
         run: |
-          git clone https://${{ secrets.GITHUB_TOKEN }}@github.com/username/target-repo.git target-repo
-
+          git clone https://${{ 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 }}@github.com/codeXGT/Lesson_1.git
       - name: Compare files
         run: |
           mkdir -p report
