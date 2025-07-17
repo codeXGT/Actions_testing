@@ -24,19 +24,18 @@ jobs:
           mkdir -p report
           echo "Checking files..." > report/result.txt
 
-          for file in $(find ./src -type f); do
+          for file in $(find Lesson_1/src -type f); do
             filename=$(basename "$file")
-            if [ -f "Lesson_1/$filename" ]; then
-              if cmp -s "$file" "target-repo/src/$filename"; then
-                echo "✅ $filename is identical in both repos." >> report/result.txt
-              else
-                echo "❗ $filename exists but differs." >> report/result.txt
-              fi
+            if [ -f "src/$filename" ]; then
+            if cmp -s "Lesson_1/src/$filename" "src/$filename"; then
+            echo "✅ $filename is identical in both repos." >> report/result.txt
             else
-              echo "❌ $filename does not exist in target repo." >> report/result.txt
+            echo "❗ $filename exists but differs." >> report/result.txt
             fi
-          done
-
+            else
+            echo "❌ $filename does not exist in target repo." >> report/result.txt
+            fi
+            done
       - name: Upload report
         uses: actions/upload-artifact@v4
         with:
