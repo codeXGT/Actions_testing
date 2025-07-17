@@ -43,5 +43,5 @@ jobs:
       - name: Summary of Check
         run: |
           echo "==== File Comparison Summary ===="
-           cat report/result.txt
+          cat report/result.txt
 
