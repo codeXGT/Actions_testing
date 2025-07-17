@@ -1,4 +1,5 @@
 name: Check Data in Another Repo
+
 on:
   push:
     branches:
@@ -24,19 +25,11 @@ jobs:
           mkdir -p report
           echo "Checking files..." > report/result.txt
 
-          # Loop through each file in src/ of triggered repo
           for srcfile in $(find src -type f); do
             filename=$(basename "$srcfile")
-
-            # Search for file with same name inside Lesson_1/
-            targetfile=$(find Lesson_1 -type f -name "$filename" | head -n 1)
-
-            if [ -n "$targetfile" ]; then
-              if cmp -s "$srcfile" "$targetfile"; then
-                echo "✅ $filename is identical in both repos." >> report/result.txt
-              else
-                echo "❗ $filename exists but differs." >> report/result.txt
-              fi
+            
+            if find Lesson_1 -type f -name "$filename" | grep -q .; then
+              echo "✅ $filename exists in both repos." >> report/result.txt
             else
               echo "❌ $filename does not exist in target repo." >> report/result.txt
             fi
