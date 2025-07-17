@@ -1,9 +1,10 @@
 name: Check Data in Another Repo
-
 on:
   push:
     branches:
       - 'feature/*'
+  workflow_dispatch:
+
 
 jobs:
   check-repo:
