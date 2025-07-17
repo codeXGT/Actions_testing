@@ -15,7 +15,7 @@ jobs:
 
       - name: Clone target repo
         run: |
-          git clone https://${{ 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 }}@github.com/codeXGT/Lesson_1.git
+          git clone https://${{ secrets.MY_GIT_TOKEN }}@github.com/codeXGT/Lesson_1.git
       - name: Compare files
         run: |
           mkdir -p report
@@ -39,3 +39,9 @@ jobs:
         with:
           name: check-report
           path: report/result.txt
+          
+      - name: Summary of Check
+        run: |
+          echo "==== File Comparison Summary ===="
+           cat report/result.txt
+
