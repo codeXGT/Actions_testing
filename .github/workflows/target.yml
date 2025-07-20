@@ -1,0 +1,21 @@
+name: List Files in Another Repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repo (optional)
+        uses: actions/checkout@v4
+
+      - name: Clone target repo
+        run: |
+          git clone https://${{ secrets.MY_GIT_TOKEN }}@github.com/codeXGT/Lesson_1.git
+
+      - name: List all files in target repo
+        run: |
+          echo "===== List of Files in Lesson_1 Repo ====="
+          find Lesson_1 -type f
