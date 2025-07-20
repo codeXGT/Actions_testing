@@ -1,4 +1,4 @@
-name: List Files in Another Repo
+name: List Files and Download CSV
 
 on:
   workflow_dispatch:
@@ -8,14 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout this repo (optional)
-        uses: actions/checkout@v4
-
       - name: Clone target repo
         run: |
           git clone https://${{ secrets.MY_GIT_TOKEN }}@github.com/codeXGT/Lesson_1.git
 
-      - name: List all files in target repo
+      - name: Generate CSV file with file names
         run: |
-          echo "===== List of Files in Lesson_1 Repo ====="
-          find Lesson_1 -type f
+          mkdir -p report
+          echo "FilePath" > report/file_list.csv
+          find Lesson_1 -type f >> report/file_list.csv
+
+      - name: Upload CSV as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: file-list-report
+          path: report/file_list.csv
