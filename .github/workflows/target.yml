@@ -15,7 +15,7 @@ jobs:
       - name: Generate CSV file with file names
         run: |
           mkdir -p report
-          echo "FilePath" > report/file_list.csv
+          echo "Filename" > report/file_list.csv
           find Lesson_1 -type f >> report/file_list.csv
 
       - name: Upload CSV as artifact
